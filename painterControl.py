@@ -147,7 +147,7 @@ class Painter(QDialog, Ui_Dialog):
 
         result_status = self.lineEdit6.text().strip()
         if result_status == '':
-            QMessageBox.warning(self, '错误', f'核对没完成。')
+            QMessageBox.warning(self, '错误', '核对没完成。')
             return
         elif result_status == 'NG':
             QMessageBox.warning(self, '错误', f'核对结果为 {result_status}，仅清空喷码。')
@@ -283,9 +283,9 @@ class Painter(QDialog, Ui_Dialog):
             self.lineEditFtp4.setText(settings.get("lineEditFtp4", ""))
             self.lineEdit2.setText(settings.get("lineEdit2", ""))
         except FileNotFoundError:
-            QMessageBox.warning(self, '错误', "配置文件没找到.")
+            QMessageBox.warning(self, '错误', '配置文件没找到.')
         except json.JSONDecodeError:
-            QMessageBox.warning(self, '错误', "错误的编码文件.")
+            QMessageBox.warning(self, '错误', '错误的编码文件.')
 
 
 if __name__ == "__main__":
