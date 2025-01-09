@@ -1,0 +1,8 @@
+Test.ipynb
+__pycache__/
+env/
+painterControl.build/
+painterControl.dist/
+build/
+readme.txt
+output_*.csv

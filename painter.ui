@@ -1,0 +1,982 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1236</width>
+    <height>508</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>喷码</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="statusTip">
+      <string notr="true"/>
+     </property>
+     <property name="whatsThis">
+      <string notr="true"/>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="tabPosition">
+      <enum>QTabWidget::TabPosition::West</enum>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::TabShape::Triangular</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab1">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <attribute name="title">
+       <string notr="true">数据记录</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1,1,1,1">
+         <property name="leftMargin">
+          <number>3</number>
+         </property>
+         <property name="rightMargin">
+          <number>3</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>6</number>
+         </property>
+         <item row="3" column="2">
+          <widget class="QLabel" name="label_9">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">LOT 数据</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLabel" name="label_11">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">喷码 LOT 数据</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QPlainTextEdit" name="plainTextEdit5">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>80</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="MyPlainTextEdit" name="plainTextEdit3">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>80</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::ClickFocus</enum>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LayoutDirection::LeftToRight</enum>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="lineEdit2">
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::ClickFocus</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="label_8">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">线名</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLineEdit" name="lineEdit4">
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="6">
+          <widget class="QTableWidget" name="tableWidget">
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::WheelFocus</enum>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::ContextMenuPolicy::ActionsContextMenu</enum>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="cornerButtonEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="columnCount">
+            <number>7</number>
+           </property>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderStretchLastSection">
+            <bool>false</bool>
+           </attribute>
+           <column>
+            <property name="text">
+             <string notr="true">日期</string>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string notr="true">线名</string>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string notr="true">LOT 纸</string>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string notr="true">MS LOT</string>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string notr="true">喷码 LOT</string>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string notr="true">核对结果</string>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string notr="true">通讯状态</string>
+            </property>
+            <property name="toolTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="MyPlainTextEdit" name="plainTextEdit4">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>80</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::ClickFocus</enum>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Sunken</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_5">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">LOT 纸原始数据</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="5">
+          <widget class="QLineEdit" name="lineEdit6">
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLineEdit" name="lineEdit3">
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">时间</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::TextFormat::AutoText</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="6">
+          <widget class="Line" name="line_4">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLabel" name="label_10">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">MS 标签 LOT 数据</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QLabel" name="label">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">最终喷码信息</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
+          <widget class="QPlainTextEdit" name="plainTextEdit6">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>80</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Sunken</enum>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="backgroundVisible">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="QLineEdit" name="lineEdit5">
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLineEdit" name="lineEdit1">
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_4">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">MS 标签原始数据</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="5">
+          <widget class="QLabel" name="label_12">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">核对结果</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="6">
+          <widget class="Line" name="line_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_3">
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">喷码信息原始数据</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLabel" name="label_17">
+           <property name="maximumSize">
+            <size>
+             <width>350</width>
+             <height>75</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="image.qrc">:/images/image.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QPushButton" name="pushButton1">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">获取数据</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton2">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">发送数据</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Orientation::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab2">
+      <attribute name="title">
+       <string notr="true">设置</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="leftMargin">
+        <number>9</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="statusTip">
+          <string notr="true"/>
+         </property>
+         <property name="whatsThis">
+          <string notr="true"/>
+         </property>
+         <property name="title">
+          <string notr="true">串口设置</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">串口号</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxSerial1">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="currentText">
+             <string notr="true">COM1</string>
+            </property>
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>COM1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM4</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM6</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM7</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM8</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM9</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM10</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">波特率</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxSerial2">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="currentText">
+             <string notr="true">9600</string>
+            </property>
+            <property name="currentIndex">
+             <number>2</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>2400</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>4800</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>9600</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>14400</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>19200</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>38400</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>56000</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>57600</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>115200</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="statusTip">
+          <string notr="true"/>
+         </property>
+         <property name="whatsThis">
+          <string notr="true"/>
+         </property>
+         <property name="title">
+          <string notr="true">FTP 设置</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">地址</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEditFtp1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::FocusPolicy::ClickFocus</enum>
+            </property>
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">用户名</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditFtp2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::FocusPolicy::ClickFocus</enum>
+            </property>
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">密码</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="lineEditFtp3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::FocusPolicy::ClickFocus</enum>
+            </property>
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">路径</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEditFtp4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::FocusPolicy::ClickFocus</enum>
+            </property>
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QPushButton" name="pushButton3">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::NoFocus</enum>
+           </property>
+           <property name="statusTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string notr="true">保存参数</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyPlainTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>MyPlainTextEdit</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="image.qrc"/>
+ </resources>
+ <connections/>
+</ui>
