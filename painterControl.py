@@ -147,10 +147,10 @@ class Painter(QDialog, Ui_Dialog):
 
         result_status = self.lineEdit6.text().strip()
         if result_status == '':
-            QMessageBox.warning(self, '错误', '核对没完成。')
+            QMessageBox.warning(self, '核对错误', '核对没完成。')
             return
         elif result_status == 'NG':
-            QMessageBox.warning(self, '错误', f'核对结果为 {result_status}，仅清空喷码。')
+            QMessageBox.warning(self, '核对错误', f'核对结果为 {result_status}，仅清空喷码。')
 
         serial_port = self.comboBoxSerial1.currentText().strip()
         serial_baud_rate = int(self.comboBoxSerial2.currentText().strip())
@@ -166,7 +166,7 @@ class Painter(QDialog, Ui_Dialog):
             serial_status = 'Good'
         except SerialCommunicationError as e:
             serial_status = 'Bad'
-            QMessageBox.warning(self, '串口通信错误', str(e))
+            QMessageBox.warning(self, '串口错误', str(e))
         except Exception as e:
             serial_status = 'Bad'
             QMessageBox.warning(self, '串口错误', str(e))
@@ -255,13 +255,13 @@ class Painter(QDialog, Ui_Dialog):
     @Slot()
     def save_settings(self):
         settings = {
-            "comboBoxSerial1": self.comboBoxSerial1.currentText(),
-            "comboBoxSerial2": self.comboBoxSerial2.currentText(),
-            "lineEditFtp1": self.lineEditFtp1.text(),
-            "lineEditFtp2": self.lineEditFtp2.text(),
-            "lineEditFtp3": self.lineEditFtp3.text(),
-            "lineEditFtp4": self.lineEditFtp4.text(),
-            "lineEdit2": self.lineEdit2.text(),
+            "comboBoxSerial1": self.comboBoxSerial1.currentText().strip(),
+            "comboBoxSerial2": self.comboBoxSerial2.currentText().strip(),
+            "lineEditFtp1": self.lineEditFtp1.text().strip(),
+            "lineEditFtp2": self.lineEditFtp2.text().strip(),
+            "lineEditFtp3": self.lineEditFtp3.text().strip(),
+            "lineEditFtp4": self.lineEditFtp4.text().strip(),
+            "lineEdit2": self.lineEdit2.text().strip(),
         }
         # 将设置保存到JSON文件
         with open("settings.json", "w", encoding="utf-8") as file:
@@ -283,9 +283,9 @@ class Painter(QDialog, Ui_Dialog):
             self.lineEditFtp4.setText(settings.get("lineEditFtp4", ""))
             self.lineEdit2.setText(settings.get("lineEdit2", ""))
         except FileNotFoundError:
-            QMessageBox.warning(self, '错误', '配置文件没找到.')
+            QMessageBox.warning(self, '其它错误', '配置文件没找到。')
         except json.JSONDecodeError:
-            QMessageBox.warning(self, '错误', '错误的编码文件.')
+            QMessageBox.warning(self, '其它错误', '错误的编码文件。')
 
 
 if __name__ == "__main__":
