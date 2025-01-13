@@ -105,7 +105,8 @@ class Painter(QDialog, Ui_Dialog):
             result_status = 'NG'
         self.lineEdit6.setText(result_status)
         self.lineEdit6.setStyleSheet(
-            "QLineEdit {background-color:red}" if result_status == 'NG' else "QLineEdit {background-color:white}")
+            "QLineEdit {background-color:red}"
+            if result_status == 'NG' else "QLineEdit {background-color:white}")
 
     @Slot()
     def plainTextEdit3_enterPressed(self):
@@ -117,25 +118,32 @@ class Painter(QDialog, Ui_Dialog):
     @Slot()
     def plainTextEdit4_enterPressed(self):
         trimmed_text = self.plainTextEdit4.toPlainText().strip()
-        text = ''
-        if trimmed_text:
-            lot_index = trimmed_text.find("LOT")
-            if lot_index != -1:
-                start_index = lot_index + 3
-                text = trimmed_text[start_index:start_index + 8].strip()
+        text = Painter.extract_substring(trimmed_text, "LOT", 8)
         self.lineEdit4.setText(text)
         self.get_data()
 
     @Slot()
     def plainTextEdit6_textChanged(self):
         trimmed_text = self.plainTextEdit6.toPlainText().strip()
-        text = ''
-        if trimmed_text:
-            lr_index = trimmed_text.find("LR")
-            if lr_index != -1:
-                start_index = lr_index + 2
-                text = trimmed_text[start_index:start_index + 9].strip()
+        text = Painter.extract_substring(trimmed_text, "LR", 9)
         self.lineEdit5.setText(text)
+
+    @staticmethod
+    def extract_substring(original_text, marker_text, length):
+        """
+        从原始字符串中提取子字符串。
+        :param original_text: 原始字符串
+        :param start_marker: 待查找的字符串
+        :param length: 返回字符串的长度
+        :return: 提取的子字符串
+        """
+        result_text = ''
+        if original_text:
+            index = original_text.find(marker_text)
+            if index != -1:
+                start_index = index + len(marker_text)
+                result_text = original_text[start_index:start_index + length].strip()
+        return result_text
 
     @Slot()
     def update_time(self):
