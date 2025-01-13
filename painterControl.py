@@ -1,19 +1,20 @@
-# 标准库导入
 import csv
 import json
+import logging
 import sys
 from collections import namedtuple
 from datetime import datetime, date
 from ftplib import FTP
 
-# 第三方库导入
 from PySide6.QtCore import Qt, QTimer, Slot
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QApplication, QDialog, QTableWidgetItem, QHeaderView, QMessageBox
 
-# 应用程序特定的模块导入
 from painter_ui import Ui_Dialog
 from serialCommunication import SerialCommunication, SerialCommunicationError
+
+# 配置日志记录
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # 定义 namedtuple
 SerialConfig = namedtuple('SerialConfig', ['port', 'baud_rate', 'use_port'])
@@ -86,6 +87,7 @@ class Painter(QDialog, Ui_Dialog):
                 ftp.retrbinary('RETR ' + remote_file_path, callback)
                 text = content.decode('utf-8').strip()
         except Exception as e:
+            logging.error(f"FTP 错误: {e}")
             QMessageBox.warning(self, 'FTP 错误', str(e))
             return
         self.plainTextEdit5.setPlainText(text)
@@ -218,8 +220,10 @@ class Painter(QDialog, Ui_Dialog):
                 serial_comm.send(text_to_send)
             status = 'Good'
         except SerialCommunicationError as e:
+            logging.error(f'串口{config.port}错误: {e}')
             QMessageBox.warning(self, f'串口{config.port}错误', str(e))
         except Exception as e:
+            logging.error(f'串口{config.port}一般错误: {e}')
             QMessageBox.warning(self, f'串口{config.port}一般错误', str(e))
         finally:
             if serial_comm:
@@ -336,8 +340,10 @@ class Painter(QDialog, Ui_Dialog):
             self.lineEditFtp4.setText(settings.get("lineEditFtp4", ""))
             self.lineEdit2.setText(settings.get("lineEdit2", ""))
         except FileNotFoundError:
+            logging.error('配置文件没找到。')
             QMessageBox.warning(self, '其它错误', '配置文件没找到。')
         except json.JSONDecodeError:
+            logging.error('错误的编码文件。')
             QMessageBox.warning(self, '其它错误', '错误的编码文件。')
 
 

@@ -1,9 +1,11 @@
+import logging
 from PySide6.QtSerialPort import QSerialPort, QSerialPortInfo
 from PySide6.QtCore import QByteArray
-import logging
 
 # 配置日志记录
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 class SerialCommunicationError(Exception):
     """当串口通信出现问题时抛出。"""
