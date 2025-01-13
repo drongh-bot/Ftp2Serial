@@ -20,6 +20,11 @@ SerialConfig = namedtuple('SerialConfig', ['port', 'baud_rate', 'use_port'])
 
 
 class Painter(QDialog, Ui_Dialog):
+    CLEAR_COMMAND = ("10 31 10 32 10 33 10 34 10 35 10 36 10 37 10 38 10 39 10 3A "
+                     "10 3B 10 3C 10 3D 10 3E 10 3F 10 40 10 41 10 42 10 43 10 44 "
+                     "10 45 10 46 10 47 10 48 10 49 10 4A 10 4B 10 4C 10 4D 10 4E "
+                     "10 4F")
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -36,8 +41,11 @@ class Painter(QDialog, Ui_Dialog):
         self.csv_file = open(csv_filename, mode="w",
                              newline="", encoding="utf-8-sig")
         self.csv_writer = csv.writer(self.csv_file)
-        self.csv_writer.writerow(
-            ["时间", "线名", "LOT 数据", "MS LOT", "喷码 LOT", "核对结果", "喷码机一通讯状态", "喷码机二通讯状态"])
+
+        # 获取表头并写入CSV文件
+        headers = [self.tableWidget.horizontalHeaderItem(
+            i).text() for i in range(self.tableWidget.columnCount())]
+        self.csv_writer.writerow(headers)
 
         # 设置定时器每秒更新一次时间
         self.timer = QTimer(self)
@@ -96,31 +104,23 @@ class Painter(QDialog, Ui_Dialog):
         else:
             result_status = 'NG'
         self.lineEdit6.setText(result_status)
-        if result_status == 'NG':
-            self.lineEdit6.setStyleSheet("QLineEdit {background-color:red}")
-        else:
-            self.lineEdit6.setStyleSheet("QLineEdit {background-color:white}")
+        self.lineEdit6.setStyleSheet(
+            "QLineEdit {background-color:red}" if result_status == 'NG' else "QLineEdit {background-color:white}")
 
     @Slot()
     def plainTextEdit3_enterPressed(self):
         trimmed_text = self.plainTextEdit3.toPlainText().strip()
-        if not trimmed_text:
-            text = ''
-        else:
-            text = trimmed_text[-8:].strip()
+        text = trimmed_text[-8:].strip() if trimmed_text else ''
         self.lineEdit3.setText(text)
         self.plainTextEdit4.setFocus()
 
     @Slot()
     def plainTextEdit4_enterPressed(self):
         trimmed_text = self.plainTextEdit4.toPlainText().strip()
-        if not trimmed_text:
-            text = ''
-        else:
+        text = ''
+        if trimmed_text:
             lot_index = trimmed_text.find("LOT")
-            if lot_index == -1:
-                text = ''
-            else:
+            if lot_index != -1:
                 start_index = lot_index + 3
                 text = trimmed_text[start_index:start_index + 8].strip()
         self.lineEdit4.setText(text)
@@ -129,13 +129,10 @@ class Painter(QDialog, Ui_Dialog):
     @Slot()
     def plainTextEdit6_textChanged(self):
         trimmed_text = self.plainTextEdit6.toPlainText().strip()
-        if not trimmed_text:
-            text = ''
-        else:
+        text = ''
+        if trimmed_text:
             lr_index = trimmed_text.find("LR")
-            if lr_index == -1:
-                text = ''
-            else:
+            if lr_index != -1:
                 start_index = lr_index + 2
                 text = trimmed_text[start_index:start_index + 9].strip()
         self.lineEdit5.setText(text)
@@ -151,15 +148,11 @@ class Painter(QDialog, Ui_Dialog):
         发送数据到串口。根据用户界面的设置，向两个不同的串口发送指定的文本数据。
         如果核对状态为 'NG'，则只发送清空命令；如果核对状态为 'OK'，则发送清空命令后跟随文本数据。
         """
-        CLEAR_COMMAND = ("10 31 10 32 10 33 10 34 10 35 10 36 10 37 10 38 10 39 10 3A "
-                         "10 3B 10 3C 10 3D 10 3E 10 3F 10 40 10 41 10 42 10 43 10 44 "
-                         "10 45 10 46 10 47 10 48 10 49 10 4A 10 4B 10 4C 10 4D 10 4E "
-                         "10 4F")
-
         check_status = self.lineEdit6.text().strip()
-        if check_status == '':
+        if not check_status:
             QMessageBox.warning(self, '核对错误', '核对没完成，不进行任何操作。')
             return
+
         if check_status == 'NG':
             QMessageBox.warning(self, '核对错误', f'核对结果为 {check_status}，仅清空喷码。')
 
@@ -178,18 +171,24 @@ class Painter(QDialog, Ui_Dialog):
         text = Painter.insert_control_characters(
             self.plainTextEdit6.toPlainText().strip())
 
-        serial1_status = self.operate_serial_port(
-            serial1_config, CLEAR_COMMAND, text, check_status)
-        serial2_status = self.operate_serial_port(
-            serial2_config, CLEAR_COMMAND, text, check_status)
+        serial1_status = self._operate_serial_port(
+            serial1_config, Painter.CLEAR_COMMAND, text, check_status)
+        serial2_status = self._operate_serial_port(
+            serial2_config, Painter.CLEAR_COMMAND, text, check_status)
 
         self.add_row(serial1_status, serial2_status)
+        self._clear_inputs()
+
+    def _clear_inputs(self):
+        """
+        清空输入框内容。
+        """
         self.plainTextEdit3.clear()
         self.plainTextEdit4.clear()
         self.plainTextEdit5.clear()
         self.plainTextEdit6.clear()
 
-    def operate_serial_port(self, config, clear_command, text_to_send, check_status):
+    def _operate_serial_port(self, config, clear_command, text_to_send, check_status):
         """
         根据提供的配置，操作指定的串口。发送清空命令，如果核对状态为 'OK'，则发送额外的文本数据。
 
@@ -243,17 +242,14 @@ class Painter(QDialog, Ui_Dialog):
         return result
 
     def add_row(self, serial1_status, serial2_status):
-        row_data = []
-        for i, input_field in enumerate(self.inputs):
-            item = QTableWidgetItem(input_field.text())
-            row_data.append(input_field.text())
-        row_data.append(serial1_status, serial2_status)
+        row_data = [input_field.text() for input_field in self.inputs]
+        row_data.extend([serial1_status, serial2_status])
 
         # 在表格的第一行插入新数据
         self.tableWidget.insertRow(0)
         for i, text in enumerate(row_data):
             item = QTableWidgetItem(text)
-            if item.text() == 'Bad' or item.text() == 'NG':
+            if item.text() in ['Bad', 'NG']:
                 item.setBackground(QColor('red'))
             item.setTextAlignment(Qt.AlignCenter)
             item.setFlags(item.flags() & ~Qt.ItemIsEditable)
