@@ -121,7 +121,7 @@ class Painter(QDialog, Ui_Dialog):
             if lot_index == -1:
                 text = ''
             else:
-                start_index = lot_index + 4
+                start_index = lot_index + 3
                 text = trimmed_text[start_index:start_index + 8].strip()
         self.lineEdit4.setText(text)
         self.get_data()
@@ -147,6 +147,10 @@ class Painter(QDialog, Ui_Dialog):
 
     @Slot()
     def send_data(self):
+        """
+        发送数据到串口。根据用户界面的设置，向两个不同的串口发送指定的文本数据。
+        如果核对状态为 'NG'，则只发送清空命令；如果核对状态为 'OK'，则发送清空命令后跟随文本数据。
+        """
         CLEAR_COMMAND = ("10 31 10 32 10 33 10 34 10 35 10 36 10 37 10 38 10 39 10 3A "
                          "10 3B 10 3C 10 3D 10 3E 10 3F 10 40 10 41 10 42 10 43 10 44 "
                          "10 45 10 46 10 47 10 48 10 49 10 4A 10 4B 10 4C 10 4D 10 4E "
@@ -186,6 +190,15 @@ class Painter(QDialog, Ui_Dialog):
         self.plainTextEdit6.clear()
 
     def operate_serial_port(self, config, clear_command, text_to_send, check_status):
+        """
+        根据提供的配置，操作指定的串口。发送清空命令，如果核对状态为 'OK'，则发送额外的文本数据。
+
+        :param config: SerialConfig namedtuple，包含串口配置信息。
+        :param clear_command: 清空命令字符串。
+        :param text_to_send: 需要发送的文本数据。
+        :param check_status: 核对状态，决定是否发送text_to_send。
+        :return: 串口操作状态，'Good' 表示成功，'' 表示未使用串口，'Bad' 表示操作失败。
+        """
         serial_comm = None
         if not config.use_port:
             return ''

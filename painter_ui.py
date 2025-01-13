@@ -744,7 +744,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.comboBoxSerial1.setCurrentIndex(0)
         self.comboBoxSerial2.setCurrentIndex(2)
         self.comboBoxSerial3.setCurrentIndex(0)
