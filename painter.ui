@@ -38,7 +38,7 @@
       <enum>QTabWidget::TabShape::Triangular</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab1">
       <property name="minimumSize">
@@ -186,7 +186,7 @@
             <bool>true</bool>
            </property>
            <property name="columnCount">
-            <number>7</number>
+            <number>8</number>
            </property>
            <attribute name="horizontalHeaderStretchLastSection">
             <bool>false</bool>
@@ -262,13 +262,18 @@
            </column>
            <column>
             <property name="text">
-             <string notr="true">通讯状态</string>
+             <string notr="true">通讯状态一</string>
             </property>
             <property name="toolTip">
              <string notr="true"/>
             </property>
             <property name="whatsThis">
              <string notr="true"/>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>通讯状态二</string>
             </property>
            </column>
           </widget>
@@ -602,6 +607,18 @@
        </property>
        <item>
         <widget class="QGroupBox" name="groupBox_2">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="statusTip">
           <string notr="true"/>
          </property>
@@ -609,7 +626,7 @@
           <string notr="true"/>
          </property>
          <property name="title">
-          <string notr="true">串口设置</string>
+          <string notr="true">喷码机一设置</string>
          </property>
          <layout class="QFormLayout" name="formLayout">
           <item row="0" column="0">
@@ -627,6 +644,18 @@
           </item>
           <item row="0" column="1">
            <widget class="QComboBox" name="comboBoxSerial1">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="statusTip">
              <string notr="true"/>
             </property>
@@ -706,6 +735,18 @@
           </item>
           <item row="1" column="1">
            <widget class="QComboBox" name="comboBoxSerial2">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="statusTip">
              <string notr="true"/>
             </property>
@@ -764,6 +805,262 @@
              </property>
             </item>
            </widget>
+          </item>
+          <item row="2" column="1">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>80</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="0">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>50</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>喷码机二设置</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_18">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">串口号</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxSerial3">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="currentText">
+             <string notr="true">COM1</string>
+            </property>
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>COM1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM4</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM6</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM7</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM8</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM9</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM10</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_19">
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string notr="true">波特率</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxSerial4">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="statusTip">
+             <string notr="true"/>
+            </property>
+            <property name="whatsThis">
+             <string notr="true"/>
+            </property>
+            <property name="currentText">
+             <string notr="true">9600</string>
+            </property>
+            <property name="currentIndex">
+             <number>2</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>2400</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>4800</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>9600</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>14400</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>19200</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>38400</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>56000</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>57600</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>115200</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="checkBox">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>启用</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>80</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>

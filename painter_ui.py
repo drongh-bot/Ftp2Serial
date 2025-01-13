@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'painter.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,11 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFormLayout,
-    QFrame, QGridLayout, QGroupBox, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QPlainTextEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QTabWidget,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
+    QFormLayout, QFrame, QGridLayout, QGroupBox,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QPlainTextEdit, QPushButton, QSizePolicy, QSpacerItem,
+    QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 from MyPlainTextEdit import MyPlainTextEdit
 import image_rc
@@ -131,8 +132,8 @@ class Ui_Dialog(object):
         self.gridLayout.addWidget(self.lineEdit4, 4, 3, 1, 1)
 
         self.tableWidget = QTableWidget(self.tab1)
-        if (self.tableWidget.columnCount() < 7):
-            self.tableWidget.setColumnCount(7)
+        if (self.tableWidget.columnCount() < 8):
+            self.tableWidget.setColumnCount(8)
         __qtablewidgetitem = QTableWidgetItem()
         __qtablewidgetitem.setText(u"\u65e5\u671f");
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
@@ -152,8 +153,10 @@ class Ui_Dialog(object):
         __qtablewidgetitem5.setText(u"\u6838\u5bf9\u7ed3\u679c");
         self.tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
-        __qtablewidgetitem6.setText(u"\u901a\u8baf\u72b6\u6001");
+        __qtablewidgetitem6.setText(u"\u901a\u8baf\u72b6\u6001\u4e00");
         self.tableWidget.setHorizontalHeaderItem(6, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(7, __qtablewidgetitem7)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setFocusPolicy(Qt.FocusPolicy.WheelFocus)
         self.tableWidget.setContextMenuPolicy(Qt.ContextMenuPolicy.ActionsContextMenu)
@@ -161,7 +164,7 @@ class Ui_Dialog(object):
         self.tableWidget.setStatusTip(u"")
 #endif // QT_CONFIG(statustip)
         self.tableWidget.setCornerButtonEnabled(True)
-        self.tableWidget.setColumnCount(7)
+        self.tableWidget.setColumnCount(8)
         self.tableWidget.horizontalHeader().setStretchLastSection(False)
         self.tableWidget.verticalHeader().setStretchLastSection(False)
 
@@ -398,13 +401,15 @@ class Ui_Dialog(object):
         self.horizontalLayout_3.setContentsMargins(9, -1, -1, -1)
         self.groupBox_2 = QGroupBox(self.tab2)
         self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox_2.setMinimumSize(QSize(150, 0))
+        self.groupBox_2.setMaximumSize(QSize(150, 16777215))
 #if QT_CONFIG(statustip)
         self.groupBox_2.setStatusTip(u"")
 #endif // QT_CONFIG(statustip)
 #if QT_CONFIG(whatsthis)
         self.groupBox_2.setWhatsThis(u"")
 #endif // QT_CONFIG(whatsthis)
-        self.groupBox_2.setTitle(u"\u4e32\u53e3\u8bbe\u7f6e")
+        self.groupBox_2.setTitle(u"\u55b7\u7801\u673a\u4e00\u8bbe\u7f6e")
         self.formLayout = QFormLayout(self.groupBox_2)
         self.formLayout.setObjectName(u"formLayout")
         self.label_2 = QLabel(self.groupBox_2)
@@ -431,6 +436,8 @@ class Ui_Dialog(object):
         self.comboBoxSerial1.addItem("")
         self.comboBoxSerial1.addItem("")
         self.comboBoxSerial1.setObjectName(u"comboBoxSerial1")
+        self.comboBoxSerial1.setMinimumSize(QSize(80, 0))
+        self.comboBoxSerial1.setMaximumSize(QSize(80, 16777215))
 #if QT_CONFIG(statustip)
         self.comboBoxSerial1.setStatusTip(u"")
 #endif // QT_CONFIG(statustip)
@@ -464,6 +471,8 @@ class Ui_Dialog(object):
         self.comboBoxSerial2.addItem("")
         self.comboBoxSerial2.addItem("")
         self.comboBoxSerial2.setObjectName(u"comboBoxSerial2")
+        self.comboBoxSerial2.setMinimumSize(QSize(80, 0))
+        self.comboBoxSerial2.setMaximumSize(QSize(80, 16777215))
 #if QT_CONFIG(statustip)
         self.comboBoxSerial2.setStatusTip(u"")
 #endif // QT_CONFIG(statustip)
@@ -474,8 +483,107 @@ class Ui_Dialog(object):
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.comboBoxSerial2)
 
+        self.horizontalSpacer_3 = QSpacerItem(80, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.formLayout.setItem(2, QFormLayout.FieldRole, self.horizontalSpacer_3)
+
+        self.horizontalSpacer_2 = QSpacerItem(50, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.formLayout.setItem(2, QFormLayout.LabelRole, self.horizontalSpacer_2)
+
 
         self.horizontalLayout_3.addWidget(self.groupBox_2)
+
+        self.groupBox_3 = QGroupBox(self.tab2)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setMinimumSize(QSize(150, 0))
+        self.groupBox_3.setMaximumSize(QSize(150, 16777215))
+        self.formLayout_4 = QFormLayout(self.groupBox_3)
+        self.formLayout_4.setObjectName(u"formLayout_4")
+        self.label_18 = QLabel(self.groupBox_3)
+        self.label_18.setObjectName(u"label_18")
+#if QT_CONFIG(statustip)
+        self.label_18.setStatusTip(u"")
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(whatsthis)
+        self.label_18.setWhatsThis(u"")
+#endif // QT_CONFIG(whatsthis)
+        self.label_18.setText(u"\u4e32\u53e3\u53f7")
+
+        self.formLayout_4.setWidget(0, QFormLayout.LabelRole, self.label_18)
+
+        self.comboBoxSerial3 = QComboBox(self.groupBox_3)
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.addItem("")
+        self.comboBoxSerial3.setObjectName(u"comboBoxSerial3")
+        self.comboBoxSerial3.setMinimumSize(QSize(80, 0))
+        self.comboBoxSerial3.setMaximumSize(QSize(80, 16777215))
+#if QT_CONFIG(statustip)
+        self.comboBoxSerial3.setStatusTip(u"")
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(whatsthis)
+        self.comboBoxSerial3.setWhatsThis(u"")
+#endif // QT_CONFIG(whatsthis)
+        self.comboBoxSerial3.setCurrentText(u"COM1")
+
+        self.formLayout_4.setWidget(0, QFormLayout.FieldRole, self.comboBoxSerial3)
+
+        self.label_19 = QLabel(self.groupBox_3)
+        self.label_19.setObjectName(u"label_19")
+#if QT_CONFIG(statustip)
+        self.label_19.setStatusTip(u"")
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(whatsthis)
+        self.label_19.setWhatsThis(u"")
+#endif // QT_CONFIG(whatsthis)
+        self.label_19.setText(u"\u6ce2\u7279\u7387")
+
+        self.formLayout_4.setWidget(1, QFormLayout.LabelRole, self.label_19)
+
+        self.comboBoxSerial4 = QComboBox(self.groupBox_3)
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.addItem("")
+        self.comboBoxSerial4.setObjectName(u"comboBoxSerial4")
+        self.comboBoxSerial4.setMinimumSize(QSize(80, 0))
+        self.comboBoxSerial4.setMaximumSize(QSize(80, 16777215))
+#if QT_CONFIG(statustip)
+        self.comboBoxSerial4.setStatusTip(u"")
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(whatsthis)
+        self.comboBoxSerial4.setWhatsThis(u"")
+#endif // QT_CONFIG(whatsthis)
+        self.comboBoxSerial4.setCurrentText(u"9600")
+
+        self.formLayout_4.setWidget(1, QFormLayout.FieldRole, self.comboBoxSerial4)
+
+        self.checkBox = QCheckBox(self.groupBox_3)
+        self.checkBox.setObjectName(u"checkBox")
+        self.checkBox.setMinimumSize(QSize(50, 0))
+        self.checkBox.setMaximumSize(QSize(50, 16777215))
+
+        self.formLayout_4.setWidget(2, QFormLayout.LabelRole, self.checkBox)
+
+        self.horizontalSpacer = QSpacerItem(80, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.formLayout_4.setItem(2, QFormLayout.FieldRole, self.horizontalSpacer)
+
+
+        self.horizontalLayout_3.addWidget(self.groupBox_3)
 
         self.groupBox = QGroupBox(self.tab2)
         self.groupBox.setObjectName(u"groupBox")
@@ -636,9 +744,11 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         self.comboBoxSerial1.setCurrentIndex(0)
         self.comboBoxSerial2.setCurrentIndex(2)
+        self.comboBoxSerial3.setCurrentIndex(0)
+        self.comboBoxSerial4.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -646,6 +756,8 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u55b7\u7801", None))
+        ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(7)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("Dialog", u"\u901a\u8baf\u72b6\u6001\u4e8c", None));
         self.label_17.setText("")
         self.comboBoxSerial1.setItemText(0, QCoreApplication.translate("Dialog", u"COM1", None))
         self.comboBoxSerial1.setItemText(1, QCoreApplication.translate("Dialog", u"COM2", None))
@@ -668,5 +780,28 @@ class Ui_Dialog(object):
         self.comboBoxSerial2.setItemText(7, QCoreApplication.translate("Dialog", u"57600", None))
         self.comboBoxSerial2.setItemText(8, QCoreApplication.translate("Dialog", u"115200", None))
 
+        self.groupBox_3.setTitle(QCoreApplication.translate("Dialog", u"\u55b7\u7801\u673a\u4e8c\u8bbe\u7f6e", None))
+        self.comboBoxSerial3.setItemText(0, QCoreApplication.translate("Dialog", u"COM1", None))
+        self.comboBoxSerial3.setItemText(1, QCoreApplication.translate("Dialog", u"COM2", None))
+        self.comboBoxSerial3.setItemText(2, QCoreApplication.translate("Dialog", u"COM3", None))
+        self.comboBoxSerial3.setItemText(3, QCoreApplication.translate("Dialog", u"COM4", None))
+        self.comboBoxSerial3.setItemText(4, QCoreApplication.translate("Dialog", u"COM5", None))
+        self.comboBoxSerial3.setItemText(5, QCoreApplication.translate("Dialog", u"COM6", None))
+        self.comboBoxSerial3.setItemText(6, QCoreApplication.translate("Dialog", u"COM7", None))
+        self.comboBoxSerial3.setItemText(7, QCoreApplication.translate("Dialog", u"COM8", None))
+        self.comboBoxSerial3.setItemText(8, QCoreApplication.translate("Dialog", u"COM9", None))
+        self.comboBoxSerial3.setItemText(9, QCoreApplication.translate("Dialog", u"COM10", None))
+
+        self.comboBoxSerial4.setItemText(0, QCoreApplication.translate("Dialog", u"2400", None))
+        self.comboBoxSerial4.setItemText(1, QCoreApplication.translate("Dialog", u"4800", None))
+        self.comboBoxSerial4.setItemText(2, QCoreApplication.translate("Dialog", u"9600", None))
+        self.comboBoxSerial4.setItemText(3, QCoreApplication.translate("Dialog", u"14400", None))
+        self.comboBoxSerial4.setItemText(4, QCoreApplication.translate("Dialog", u"19200", None))
+        self.comboBoxSerial4.setItemText(5, QCoreApplication.translate("Dialog", u"38400", None))
+        self.comboBoxSerial4.setItemText(6, QCoreApplication.translate("Dialog", u"56000", None))
+        self.comboBoxSerial4.setItemText(7, QCoreApplication.translate("Dialog", u"57600", None))
+        self.comboBoxSerial4.setItemText(8, QCoreApplication.translate("Dialog", u"115200", None))
+
+        self.checkBox.setText(QCoreApplication.translate("Dialog", u"\u542f\u7528", None))
     # retranslateUi
 

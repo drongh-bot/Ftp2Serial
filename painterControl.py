@@ -1,15 +1,22 @@
-import sys
+# 标准库导入
 import csv
-from ftplib import FTP
-from datetime import datetime, date
 import json
-from PySide6.QtWidgets import (QApplication, QDialog,
-                               QTableWidgetItem, QHeaderView, QMessageBox)
+import sys
+from collections import namedtuple
+from datetime import datetime, date
+from ftplib import FTP
+
+# 第三方库导入
 from PySide6.QtCore import Qt, QTimer, Slot
 from PySide6.QtGui import QColor
+from PySide6.QtWidgets import QApplication, QDialog, QTableWidgetItem, QHeaderView, QMessageBox
+
+# 应用程序特定的模块导入
+from painter_ui import Ui_Dialog
 from serialCommunication import SerialCommunication, SerialCommunicationError
 
-from painter_ui import Ui_Dialog
+# 定义 namedtuple
+SerialConfig = namedtuple('SerialConfig', ['port', 'baud_rate', 'use_port'])
 
 
 class Painter(QDialog, Ui_Dialog):
@@ -30,7 +37,7 @@ class Painter(QDialog, Ui_Dialog):
                              newline="", encoding="utf-8-sig")
         self.csv_writer = csv.writer(self.csv_file)
         self.csv_writer.writerow(
-            ["时间", "线名", "LOT 数据", "MS LOT", "喷码 LOT", "核对结果", "通讯状态"])
+            ["时间", "线名", "LOT 数据", "MS LOT", "喷码 LOT", "核对结果", "喷码机一通讯状态", "喷码机二通讯状态"])
 
         # 设置定时器每秒更新一次时间
         self.timer = QTimer(self)
@@ -145,39 +152,59 @@ class Painter(QDialog, Ui_Dialog):
                          "10 45 10 46 10 47 10 48 10 49 10 4A 10 4B 10 4C 10 4D 10 4E "
                          "10 4F")
 
-        result_status = self.lineEdit6.text().strip()
-        if result_status == '':
-            QMessageBox.warning(self, '核对错误', '核对没完成。')
+        check_status = self.lineEdit6.text().strip()
+        if check_status == '':
+            QMessageBox.warning(self, '核对错误', '核对没完成，不进行任何操作。')
             return
-        elif result_status == 'NG':
-            QMessageBox.warning(self, '核对错误', f'核对结果为 {result_status}，仅清空喷码。')
+        if check_status == 'NG':
+            QMessageBox.warning(self, '核对错误', f'核对结果为 {check_status}，仅清空喷码。')
 
-        serial_port = self.comboBoxSerial1.currentText().strip()
-        serial_baud_rate = int(self.comboBoxSerial2.currentText().strip())
-        serial_text = self.plainTextEdit6.toPlainText().strip()
-        serial_status = 'Bad'
-        serial_comm = SerialCommunication()
-        try:
-            serial_comm.open_serial_port(serial_port, serial_baud_rate)
-            serial_comm.send(CLEAR_COMMAND)
-            if result_status == 'OK':
-                serial_comm.send(
-                    Painter.insert_control_characters(serial_text))
-            serial_status = 'Good'
-        except SerialCommunicationError as e:
-            serial_status = 'Bad'
-            QMessageBox.warning(self, '串口错误', str(e))
-        except Exception as e:
-            serial_status = 'Bad'
-            QMessageBox.warning(self, '串口错误', str(e))
-        finally:
-            serial_comm.close_serial_port()
+        serial1_config = SerialConfig(
+            self.comboBoxSerial1.currentText().strip(),
+            int(self.comboBoxSerial2.currentText().strip()),
+            True
+        )
 
-        self.add_row(serial_status)
+        serial2_config = SerialConfig(
+            self.comboBoxSerial3.currentText().strip(),
+            int(self.comboBoxSerial4.currentText().strip()),
+            self.checkBox.isChecked()
+        )
+
+        text = Painter.insert_control_characters(
+            self.plainTextEdit6.toPlainText().strip())
+
+        serial1_status = self.operate_serial_port(
+            serial1_config, CLEAR_COMMAND, text, check_status)
+        serial2_status = self.operate_serial_port(
+            serial2_config, CLEAR_COMMAND, text, check_status)
+
+        self.add_row(serial1_status, serial2_status)
         self.plainTextEdit3.clear()
         self.plainTextEdit4.clear()
         self.plainTextEdit5.clear()
         self.plainTextEdit6.clear()
+
+    def operate_serial_port(self, config, clear_command, text_to_send, check_status):
+        serial_comm = None
+        if not config.use_port:
+            return ''
+        status = 'Bad'
+        try:
+            serial_comm = SerialCommunication()
+            serial_comm.open_serial_port(config.port, config.baud_rate)
+            serial_comm.send(clear_command)
+            if check_status == 'OK':
+                serial_comm.send(text_to_send)
+            status = 'Good'
+        except SerialCommunicationError as e:
+            QMessageBox.warning(self, f'串口{config.port}错误', str(e))
+        except Exception as e:
+            QMessageBox.warning(self, f'串口{config.port}一般错误', str(e))
+        finally:
+            if serial_comm:
+                serial_comm.close_serial_port()
+        return status
 
     @staticmethod
     def insert_control_characters(text):
@@ -202,12 +229,12 @@ class Painter(QDialog, Ui_Dialog):
                 char_count_since_last_insert += 1
         return result
 
-    def add_row(self, communication_status):
+    def add_row(self, serial1_status, serial2_status):
         row_data = []
         for i, input_field in enumerate(self.inputs):
             item = QTableWidgetItem(input_field.text())
             row_data.append(input_field.text())
-        row_data.append(communication_status)
+        row_data.append(serial1_status, serial2_status)
 
         # 在表格的第一行插入新数据
         self.tableWidget.insertRow(0)
@@ -257,11 +284,15 @@ class Painter(QDialog, Ui_Dialog):
         settings = {
             "comboBoxSerial1": self.comboBoxSerial1.currentText().strip(),
             "comboBoxSerial2": self.comboBoxSerial2.currentText().strip(),
+            "comboBoxSerial3": self.comboBoxSerial3.currentText().strip(),
+            "comboBoxSerial4": self.comboBoxSerial4.currentText().strip(),
+            "checkBox": self.checkBox.isChecked(),
             "lineEditFtp1": self.lineEditFtp1.text().strip(),
             "lineEditFtp2": self.lineEditFtp2.text().strip(),
             "lineEditFtp3": self.lineEditFtp3.text().strip(),
             "lineEditFtp4": self.lineEditFtp4.text().strip(),
             "lineEdit2": self.lineEdit2.text().strip(),
+
         }
         # 将设置保存到JSON文件
         with open("settings.json", "w", encoding="utf-8") as file:
@@ -277,6 +308,11 @@ class Painter(QDialog, Ui_Dialog):
                 settings.get("comboBoxSerial1", ""))
             self.comboBoxSerial2.setCurrentText(
                 settings.get("comboBoxSerial2", ""))
+            self.comboBoxSerial3.setCurrentText(
+                settings.get("comboBoxSerial3", ""))
+            self.comboBoxSerial4.setCurrentText(
+                settings.get("comboBoxSerial4", ""))
+            self.checkBox.setChecked(settings.get("checkBox", False))
             self.lineEditFtp1.setText(settings.get("lineEditFtp1", ""))
             self.lineEditFtp2.setText(settings.get("lineEditFtp2", ""))
             self.lineEditFtp3.setText(settings.get("lineEditFtp3", ""))

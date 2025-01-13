@@ -1,6 +1,9 @@
 {
     "comboBoxSerial1": "COM1",
     "comboBoxSerial2": "9600",
+    "comboBoxSerial3": "COM1",
+    "comboBoxSerial4": "9600",
+    "checkBox": true,
     "lineEditFtp1": "filepdm470b.global.rogers-corp.com",
     "lineEditFtp2": "acmpmp",
     "lineEditFtp3": "wnsv7788",
