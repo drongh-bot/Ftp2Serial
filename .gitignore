@@ -6,3 +6,5 @@ painterControl.dist/
 build/
 readme.txt
 output_*.csv
+dist/
+build/
