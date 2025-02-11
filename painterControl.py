@@ -14,17 +14,18 @@ from painter_ui import Ui_Dialog
 from serialCommunication import SerialCommunication, SerialCommunicationError
 
 # 配置日志记录
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # 定义 namedtuple
 SerialConfig = namedtuple('SerialConfig', ['port', 'baud_rate', 'use_port'])
 
 
 class Painter(QDialog, Ui_Dialog):
-    CLEAR_COMMAND = ("10 31 10 32 10 33 10 34 10 35 10 36 10 37 10 38 10 39 10 3A "
-                     "10 3B 10 3C 10 3D 10 3E 10 3F 10 40 10 41 10 42 10 43 10 44 "
-                     "10 45 10 46 10 47 10 48 10 49 10 4A 10 4B 10 4C 10 4D 10 4E "
-                     "10 4F")
+    CLEAR_COMMAND = ('10 31 10 32 10 33 10 34 10 35 10 36 10 37 10 38 10 39 10 3A'
+                     '10 3B 10 3C 10 3D 10 3E 10 3F 10 40 10 41 10 42 10 43 10 44'
+                     '10 45 10 46 10 47 10 48 10 49 10 4A 10 4B 10 4C 10 4D 10 4E'
+                     '10 4F')
 
     def __init__(self):
         super().__init__()
@@ -37,10 +38,10 @@ class Painter(QDialog, Ui_Dialog):
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         # 动态生成CSV文件名
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        csv_filename = f"output_{timestamp}.csv"
-        self.csv_file = open(csv_filename, mode="w",
-                             newline="", encoding="utf-8-sig")
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        csv_filename = f'output_{timestamp}.csv'
+        self.csv_file = open(csv_filename, mode='w',
+                             newline='', encoding='utf-8-sig')
         self.csv_writer = csv.writer(self.csv_file)
 
         # 获取表头并写入CSV文件
@@ -87,7 +88,7 @@ class Painter(QDialog, Ui_Dialog):
                 ftp.retrbinary('RETR ' + remote_file_path, callback)
                 text = content.decode('utf-8').strip()
         except Exception as e:
-            logging.error(f"FTP 错误: {e}")
+            logging.error(f'FTP 错误: {e}')
             QMessageBox.warning(self, 'FTP 错误', str(e))
             return
         self.plainTextEdit5.setPlainText(text)
@@ -107,8 +108,8 @@ class Painter(QDialog, Ui_Dialog):
             result_status = 'NG'
         self.lineEdit6.setText(result_status)
         self.lineEdit6.setStyleSheet(
-            "QLineEdit {background-color:red}"
-            if result_status == 'NG' else "QLineEdit {background-color:white}")
+            'QLineEdit {background-color:red}'
+            if result_status == 'NG' else 'QLineEdit {background-color:white}')
 
     @Slot()
     def plainTextEdit3_enterPressed(self):
@@ -120,25 +121,25 @@ class Painter(QDialog, Ui_Dialog):
     @Slot()
     def plainTextEdit4_enterPressed(self):
         trimmed_text = self.plainTextEdit4.toPlainText().strip()
-        text = Painter.extract_substring(trimmed_text, "LOT", 8)
+        text = Painter.extract_substring(trimmed_text, 'LOT', 8)
         self.lineEdit4.setText(text)
         self.get_data()
 
     @Slot()
     def plainTextEdit6_textChanged(self):
         trimmed_text = self.plainTextEdit6.toPlainText().strip()
-        text = Painter.extract_substring(trimmed_text, "LR", 9)
+        text = Painter.extract_substring(trimmed_text, 'LR', 9)
         self.lineEdit5.setText(text)
 
     @staticmethod
     def extract_substring(original_text, marker_text, length):
-        """
+        '''
         从原始字符串中提取子字符串。
         :param original_text: 原始字符串
         :param start_marker: 待查找的字符串
         :param length: 返回字符串的长度
         :return: 提取的子字符串
-        """
+        '''
         result_text = ''
         if original_text:
             index = original_text.find(marker_text)
@@ -149,15 +150,15 @@ class Painter(QDialog, Ui_Dialog):
 
     @Slot()
     def update_time(self):
-        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.lineEdit1.setText(current_time)
 
     @Slot()
     def send_data(self):
-        """
+        '''
         发送数据到串口。根据用户界面的设置，向两个不同的串口发送指定的文本数据。
         如果核对状态为 'NG'，则只发送清空命令；如果核对状态为 'OK'，则发送清空命令后跟随文本数据。
-        """
+        '''
         check_status = self.lineEdit6.text().strip()
         if not check_status:
             QMessageBox.warning(self, '核对错误', '核对没完成，不进行任何操作。')
@@ -190,16 +191,16 @@ class Painter(QDialog, Ui_Dialog):
         self._clear_inputs()
 
     def _clear_inputs(self):
-        """
+        '''
         清空输入框内容。
-        """
+        '''
         self.plainTextEdit3.clear()
         self.plainTextEdit4.clear()
         self.plainTextEdit5.clear()
         self.plainTextEdit6.clear()
 
     def _operate_serial_port(self, config, clear_command, text_to_send, check_status):
-        """
+        '''
         根据提供的配置，操作指定的串口。发送清空命令，如果核对状态为 'OK'，则发送额外的文本数据。
 
         :param config: SerialConfig namedtuple，包含串口配置信息。
@@ -207,7 +208,7 @@ class Painter(QDialog, Ui_Dialog):
         :param text_to_send: 需要发送的文本数据。
         :param check_status: 核对状态，决定是否发送text_to_send。
         :return: 串口操作状态，'Good' 表示成功，'' 表示未使用串口，'Bad' 表示操作失败。
-        """
+        '''
         serial_comm = None
         if not config.use_port:
             return ''
@@ -278,67 +279,67 @@ class Painter(QDialog, Ui_Dialog):
 
     @staticmethod
     def format_string(text):
-        parts = text.split("|")
+        parts = text.split('|')
         current_date = Painter.format_date_english(date.today())
-        formatted_str = "ROG|"
+        formatted_str = 'ROG|'
         for i, part in enumerate(parts):
-            formatted_str += part.strip() + "|"
+            formatted_str += part.strip() + '|'
             if i == 1:
-                formatted_str += current_date + "|"
-        formatted_str += "%%%"
+                formatted_str += current_date + '|'
+        formatted_str += '%%%'
         return formatted_str
 
     @staticmethod
     def format_date_english(date_value):
         month_mapping = {
-            1: "JAN", 2: "FEB", 3: "MAR", 4: "APR",
-            5: "MAY", 6: "JUN", 7: "JUL", 8: "AUG",
-            9: "SEP", 10: "OCT", 11: "NOV", 12: "DEC"
+            1: 'JAN', 2: 'FEB', 3: 'MAR', 4: 'APR',
+            5: 'MAY', 6: 'JUN', 7: 'JUL', 8: 'AUG',
+            9: 'SEP', 10: 'OCT', 11: 'NOV', 12: 'DEC'
         }
         eng_month = month_mapping[date_value.month]
         day = date_value.day
         year_two_digits = str(date_value.year)[-2:]
-        return f"{day}{eng_month}{year_two_digits}".upper()
+        return f'{day}{eng_month}{year_two_digits}'.upper()
 
     @Slot()
     def save_settings(self):
         settings = {
-            "comboBoxSerial1": self.comboBoxSerial1.currentText().strip(),
-            "comboBoxSerial2": self.comboBoxSerial2.currentText().strip(),
-            "comboBoxSerial3": self.comboBoxSerial3.currentText().strip(),
-            "comboBoxSerial4": self.comboBoxSerial4.currentText().strip(),
-            "checkBox": self.checkBox.isChecked(),
-            "lineEditFtp1": self.lineEditFtp1.text().strip(),
-            "lineEditFtp2": self.lineEditFtp2.text().strip(),
-            "lineEditFtp3": self.lineEditFtp3.text().strip(),
-            "lineEditFtp4": self.lineEditFtp4.text().strip(),
-            "lineEdit2": self.lineEdit2.text().strip(),
+            'comboBoxSerial1': self.comboBoxSerial1.currentText().strip(),
+            'comboBoxSerial2': self.comboBoxSerial2.currentText().strip(),
+            'comboBoxSerial3': self.comboBoxSerial3.currentText().strip(),
+            'comboBoxSerial4': self.comboBoxSerial4.currentText().strip(),
+            'checkBox': self.checkBox.isChecked(),
+            'lineEditFtp1': self.lineEditFtp1.text().strip(),
+            'lineEditFtp2': self.lineEditFtp2.text().strip(),
+            'lineEditFtp3': self.lineEditFtp3.text().strip(),
+            'lineEditFtp4': self.lineEditFtp4.text().strip(),
+            'lineEdit2': self.lineEdit2.text().strip(),
 
         }
         # 将设置保存到JSON文件
-        with open("settings.json", "w", encoding="utf-8") as file:
+        with open('settings.json', 'w', encoding='utf-8') as file:
             json.dump(settings, file, ensure_ascii=False, indent=4)
 
     def load_settings(self):
         try:
             # 从JSON文件中读取设置
-            with open("settings.json", "r", encoding="utf-8") as file:
+            with open('settings.json', 'r', encoding='utf-8') as file:
                 settings = json.load(file)
             # 将设置应用到控件
             self.comboBoxSerial1.setCurrentText(
-                settings.get("comboBoxSerial1", ""))
+                settings.get('comboBoxSerial1', ''))
             self.comboBoxSerial2.setCurrentText(
-                settings.get("comboBoxSerial2", ""))
+                settings.get('comboBoxSerial2', ''))
             self.comboBoxSerial3.setCurrentText(
-                settings.get("comboBoxSerial3", ""))
+                settings.get('comboBoxSerial3', ''))
             self.comboBoxSerial4.setCurrentText(
-                settings.get("comboBoxSerial4", ""))
-            self.checkBox.setChecked(settings.get("checkBox", False))
-            self.lineEditFtp1.setText(settings.get("lineEditFtp1", ""))
-            self.lineEditFtp2.setText(settings.get("lineEditFtp2", ""))
-            self.lineEditFtp3.setText(settings.get("lineEditFtp3", ""))
-            self.lineEditFtp4.setText(settings.get("lineEditFtp4", ""))
-            self.lineEdit2.setText(settings.get("lineEdit2", ""))
+                settings.get('comboBoxSerial4', ''))
+            self.checkBox.setChecked(settings.get('checkBox', False))
+            self.lineEditFtp1.setText(settings.get('lineEditFtp1', ''))
+            self.lineEditFtp2.setText(settings.get('lineEditFtp2', ''))
+            self.lineEditFtp3.setText(settings.get('lineEditFtp3', ''))
+            self.lineEditFtp4.setText(settings.get('lineEditFtp4', ''))
+            self.lineEdit2.setText(settings.get('lineEdit2', ''))
         except FileNotFoundError:
             logging.error('配置文件没找到。')
             QMessageBox.warning(self, '其它错误', '配置文件没找到。')
@@ -347,7 +348,7 @@ class Painter(QDialog, Ui_Dialog):
             QMessageBox.warning(self, '其它错误', '错误的编码文件。')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = Painter()
     window.show()
