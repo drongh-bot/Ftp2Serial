@@ -1,12 +1,8 @@
 {
-    "comboBoxSerial1": "COM1",
-    "comboBoxSerial2": "9600",
-    "comboBoxSerial3": "COM2",
-    "comboBoxSerial4": "9600",
-    "checkBox": false,
-    "lineEditFtp1": "filepdm470b.global.rogers-corp.com",
-    "lineEditFtp2": "acmpmp",
-    "lineEditFtp3": "wnsv7788",
-    "lineEditFtp4": "/Prod/47080_P01/PanelmarkingStandard.txt",
-    "lineEdit2": "ROBUST1"
+    "comboBoxSerial0": "COM1",
+    "comboBoxSerial1": "9600",
+    "lineEditFtp0": "filepdm470b.global.rogers-corp.com",
+    "lineEditFtp1": "acmpmp",
+    "lineEditFtp2": "wnsv7788",
+    "lineEditFtp3": "/Prod/47080_P01/PanelmarkingStandard.txt"
 }

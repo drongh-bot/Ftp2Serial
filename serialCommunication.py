@@ -16,7 +16,7 @@ class SerialCommunication:
     def __init__(self):
         self.serial = QSerialPort()
 
-    def open_serial_port(self, port: str, baud_rate: int) -> None:
+    def openSerialport(self, port: str, baud_rate: int) -> None:
         ports = [port_info.portName()
                  for port_info in QSerialPortInfo.availablePorts()]
         if port not in ports:
