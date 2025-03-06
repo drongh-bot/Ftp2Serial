@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'painter.ui'
+## Form generated from reading UI file 'ftp2Serial.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.2
 ##

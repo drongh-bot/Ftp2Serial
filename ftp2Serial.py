@@ -5,7 +5,7 @@ from ftplib import FTP
 from PySide6.QtCore import Qt, Slot, QSettings
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 
-from painter_ui import Ui_Dialog
+from ftp2Serial_ui import Ui_Dialog
 from serialCommunication import SerialCommunication, SerialCommunicationError
 
 
