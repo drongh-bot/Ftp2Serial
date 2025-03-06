@@ -13,6 +13,7 @@ from PySide6.QtWidgets import QApplication, QDialog, QTableWidgetItem, QHeaderVi
 from painter_ui import Ui_Dialog
 from serialCommunication import SerialCommunication, SerialCommunicationError
 
+# good
 # 配置日志记录
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
