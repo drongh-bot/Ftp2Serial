@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
-class Painter(QDialog, Ui_Dialog):
+class Form(QDialog, Ui_Dialog):
 
     def __init__(self):
         super().__init__()
@@ -119,6 +119,6 @@ class Painter(QDialog, Ui_Dialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = Painter()
+    window = Form()
     window.show()
     sys.exit(app.exec())

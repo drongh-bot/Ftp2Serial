@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['painterControl.py'],
+    ['ftp2Serial.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -21,7 +21,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='painterControl',
+    name='ftp2Serial',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -40,5 +40,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='painterControl',
+    name='ftp2Serial',
 )
