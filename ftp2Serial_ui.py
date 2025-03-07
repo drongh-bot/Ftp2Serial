@@ -20,19 +20,19 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFormLayout,
     QPlainTextEdit, QPushButton, QSizePolicy, QSpacerItem,
     QTabWidget, QVBoxLayout, QWidget)
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        if not Dialog.objectName():
-            Dialog.setObjectName(u"Dialog")
-        Dialog.resize(362, 377)
+class Ui_Ftp2Serial(object):
+    def setupUi(self, Ftp2Serial):
+        if not Ftp2Serial.objectName():
+            Ftp2Serial.setObjectName(u"Ftp2Serial")
+        Ftp2Serial.resize(362, 377)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
-        Dialog.setSizePolicy(sizePolicy)
-        self.horizontalLayout = QHBoxLayout(Dialog)
+        sizePolicy.setHeightForWidth(Ftp2Serial.sizePolicy().hasHeightForWidth())
+        Ftp2Serial.setSizePolicy(sizePolicy)
+        self.horizontalLayout = QHBoxLayout(Ftp2Serial)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.tabWidget = QTabWidget(Dialog)
+        self.tabWidget = QTabWidget(Ftp2Serial)
         self.tabWidget.setObjectName(u"tabWidget")
 #if QT_CONFIG(statustip)
         self.tabWidget.setStatusTip(u"")
@@ -361,40 +361,40 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.tabWidget)
 
 
-        self.retranslateUi(Dialog)
+        self.retranslateUi(Ftp2Serial)
 
         self.tabWidget.setCurrentIndex(0)
         self.comboBoxSerial0.setCurrentIndex(0)
         self.comboBoxSerial1.setCurrentIndex(2)
 
 
-        QMetaObject.connectSlotsByName(Dialog)
+        QMetaObject.connectSlotsByName(Ftp2Serial)
     # setupUi
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Ftp2SerialPort", None))
-        self.buttonReadData.setText(QCoreApplication.translate("Dialog", u"\u8bfb\u53d6\u6570\u636e", None))
-        self.buttonSendData.setText(QCoreApplication.translate("Dialog", u"\u53d1\u9001\u6570\u636e", None))
-        self.comboBoxSerial0.setItemText(0, QCoreApplication.translate("Dialog", u"COM1", None))
-        self.comboBoxSerial0.setItemText(1, QCoreApplication.translate("Dialog", u"COM2", None))
-        self.comboBoxSerial0.setItemText(2, QCoreApplication.translate("Dialog", u"COM3", None))
-        self.comboBoxSerial0.setItemText(3, QCoreApplication.translate("Dialog", u"COM4", None))
-        self.comboBoxSerial0.setItemText(4, QCoreApplication.translate("Dialog", u"COM5", None))
-        self.comboBoxSerial0.setItemText(5, QCoreApplication.translate("Dialog", u"COM6", None))
-        self.comboBoxSerial0.setItemText(6, QCoreApplication.translate("Dialog", u"COM7", None))
-        self.comboBoxSerial0.setItemText(7, QCoreApplication.translate("Dialog", u"COM8", None))
-        self.comboBoxSerial0.setItemText(8, QCoreApplication.translate("Dialog", u"COM9", None))
-        self.comboBoxSerial0.setItemText(9, QCoreApplication.translate("Dialog", u"COM10", None))
+    def retranslateUi(self, Ftp2Serial):
+        Ftp2Serial.setWindowTitle(QCoreApplication.translate("Ftp2Serial", u"Ftp2SerialPort", None))
+        self.buttonReadData.setText(QCoreApplication.translate("Ftp2Serial", u"\u8bfb\u53d6\u6570\u636e", None))
+        self.buttonSendData.setText(QCoreApplication.translate("Ftp2Serial", u"\u53d1\u9001\u6570\u636e", None))
+        self.comboBoxSerial0.setItemText(0, QCoreApplication.translate("Ftp2Serial", u"COM1", None))
+        self.comboBoxSerial0.setItemText(1, QCoreApplication.translate("Ftp2Serial", u"COM2", None))
+        self.comboBoxSerial0.setItemText(2, QCoreApplication.translate("Ftp2Serial", u"COM3", None))
+        self.comboBoxSerial0.setItemText(3, QCoreApplication.translate("Ftp2Serial", u"COM4", None))
+        self.comboBoxSerial0.setItemText(4, QCoreApplication.translate("Ftp2Serial", u"COM5", None))
+        self.comboBoxSerial0.setItemText(5, QCoreApplication.translate("Ftp2Serial", u"COM6", None))
+        self.comboBoxSerial0.setItemText(6, QCoreApplication.translate("Ftp2Serial", u"COM7", None))
+        self.comboBoxSerial0.setItemText(7, QCoreApplication.translate("Ftp2Serial", u"COM8", None))
+        self.comboBoxSerial0.setItemText(8, QCoreApplication.translate("Ftp2Serial", u"COM9", None))
+        self.comboBoxSerial0.setItemText(9, QCoreApplication.translate("Ftp2Serial", u"COM10", None))
 
-        self.comboBoxSerial1.setItemText(0, QCoreApplication.translate("Dialog", u"2400", None))
-        self.comboBoxSerial1.setItemText(1, QCoreApplication.translate("Dialog", u"4800", None))
-        self.comboBoxSerial1.setItemText(2, QCoreApplication.translate("Dialog", u"9600", None))
-        self.comboBoxSerial1.setItemText(3, QCoreApplication.translate("Dialog", u"14400", None))
-        self.comboBoxSerial1.setItemText(4, QCoreApplication.translate("Dialog", u"19200", None))
-        self.comboBoxSerial1.setItemText(5, QCoreApplication.translate("Dialog", u"38400", None))
-        self.comboBoxSerial1.setItemText(6, QCoreApplication.translate("Dialog", u"56000", None))
-        self.comboBoxSerial1.setItemText(7, QCoreApplication.translate("Dialog", u"57600", None))
-        self.comboBoxSerial1.setItemText(8, QCoreApplication.translate("Dialog", u"115200", None))
+        self.comboBoxSerial1.setItemText(0, QCoreApplication.translate("Ftp2Serial", u"2400", None))
+        self.comboBoxSerial1.setItemText(1, QCoreApplication.translate("Ftp2Serial", u"4800", None))
+        self.comboBoxSerial1.setItemText(2, QCoreApplication.translate("Ftp2Serial", u"9600", None))
+        self.comboBoxSerial1.setItemText(3, QCoreApplication.translate("Ftp2Serial", u"14400", None))
+        self.comboBoxSerial1.setItemText(4, QCoreApplication.translate("Ftp2Serial", u"19200", None))
+        self.comboBoxSerial1.setItemText(5, QCoreApplication.translate("Ftp2Serial", u"38400", None))
+        self.comboBoxSerial1.setItemText(6, QCoreApplication.translate("Ftp2Serial", u"56000", None))
+        self.comboBoxSerial1.setItemText(7, QCoreApplication.translate("Ftp2Serial", u"57600", None))
+        self.comboBoxSerial1.setItemText(8, QCoreApplication.translate("Ftp2Serial", u"115200", None))
 
     # retranslateUi
 

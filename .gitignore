@@ -9,3 +9,4 @@ output_*.csv
 dist/
 build/
 Ftp2Serial.code-workspace
+settings.json

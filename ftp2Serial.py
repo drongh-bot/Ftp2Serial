@@ -5,7 +5,7 @@ from ftplib import FTP
 from PySide6.QtCore import Qt, Slot, QSettings
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 
-from ftp2Serial_ui import Ui_Dialog
+from ftp2Serial_ui import Ui_Ftp2Serial
 from serialCommunication import SerialCommunication, SerialCommunicationError
 
 
@@ -14,16 +14,15 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
-class Form(QDialog, Ui_Dialog):
+class Form(QDialog, Ui_Ftp2Serial):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.setupUi(self)
         self.setFixedSize(480, 360)
         self.setWindowFlags(Qt.Window)
         self.settings = QSettings("Rogers", "Ftp2SerialPort")
-        # print(self.settings.fileName())
-        self.plainTextEdit0.setReadOnly(True)
+        # self.plainTextEdit0.setReadOnly(True)
 
         self.buttonReadData.clicked.connect(self.readData)
         self.buttonSendData.clicked.connect(self.sendData)
