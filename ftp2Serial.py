@@ -23,7 +23,7 @@ class Form(QDialog, Ui_Ftp2Serial):
         self.setFixedSize(480, 360)
         self.setWindowFlags(Qt.Window)
         self.settings = QSettings("Rogers", "Ftp2SerialPort")
-        # self.plainTextEdit0.setReadOnly(True)
+        self.plainTextEdit0.setReadOnly(True)
 
         self.buttonReadData.clicked.connect(self.readData)
         self.buttonSendData.clicked.connect(self.sendData)
@@ -35,7 +35,7 @@ class Form(QDialog, Ui_Ftp2Serial):
         ftpServer = self.lineEditFtp0.text().strip()
         username = self.lineEditFtp1.text().strip()
         password = self.lineEditFtp2.text().strip()
-        remoteFilepath = self.lineEditFtp3.text().strip()
+        remoteFilePath = self.lineEditFtp3.text().strip()
 
         text = ''
         try:
@@ -46,7 +46,7 @@ class Form(QDialog, Ui_Ftp2Serial):
                 def callback(data):
                     content.extend(data)
 
-                ftp.retrbinary('RETR ' + remoteFilepath, callback)
+                ftp.retrbinary('RETR ' + remoteFilePath, callback)
                 text = content.decode('utf-8').strip()
         except Exception as e:
             logging.error(f'FTP 错误: {e}')
