@@ -1,5 +1,6 @@
 import logging
 import sys
+from datetime import date
 from ftplib import FTP
 
 from PySide6.QtCore import Qt, Slot, QSettings
@@ -51,7 +52,7 @@ class Form(QDialog, Ui_Ftp2Serial):
             logging.error(f'FTP 错误: {e}')
             QMessageBox.warning(self, 'FTP 错误', str(e))
             return
-        self.plainTextEdit0.setPlainText(text.strip())
+        self.plainTextEdit0.setPlainText(self.__format_string(text.strip()))
 
     @Slot()
     def sendData(self):
@@ -77,6 +78,28 @@ class Form(QDialog, Ui_Ftp2Serial):
             if serialComm:
                 serialComm.close_serial_port()
         self.plainTextEdit0.clear()
+
+    def __format_string(self, text):
+        parts = text.split('|')
+        current_date = self.__format_date_english(date.today())
+        formatted_str = 'ROG|'
+        for i, part in enumerate(parts):
+            formatted_str += part.strip() + '|'
+            if i == 1:
+                formatted_str += current_date + '|'
+        formatted_str += '%%%'
+        return formatted_str
+
+    def __format_date_english(self, dateValue):
+        month_mapping = {
+            1: 'JAN', 2: 'FEB', 3: 'MAR', 4: 'APR',
+            5: 'MAY', 6: 'JUN', 7: 'JUL', 8: 'AUG',
+            9: 'SEP', 10: 'OCT', 11: 'NOV', 12: 'DEC'
+        }
+        eng_month = month_mapping[dateValue.month]
+        day = dateValue.day
+        year_two_digits = str(dateValue.year)[-2:]
+        return f'{day}{eng_month}{year_two_digits}'.upper()
 
     @Slot()
     def closeEvent(self, event):

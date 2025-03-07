@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Ftp2SerialPort</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="appIcon.qrc">
+    <normaloff>:/appIcon/icons/vga-cable.png</normaloff>:/appIcon/icons/vga-cable.png</iconset>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QTabWidget" name="tabWidget">
@@ -666,6 +670,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="appIcon.qrc"/>
+ </resources>
  <connections/>
 </ui>

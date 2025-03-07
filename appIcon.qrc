@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="appIcon">
+    <file>icons/vga-cable.png</file>
+  </qresource>
+</RCC>

@@ -19,6 +19,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFormLayout,
     QGroupBox, QHBoxLayout, QLabel, QLineEdit,
     QPlainTextEdit, QPushButton, QSizePolicy, QSpacerItem,
     QTabWidget, QVBoxLayout, QWidget)
+import appIcon_rc
 
 class Ui_Ftp2Serial(object):
     def setupUi(self, Ftp2Serial):
@@ -30,6 +31,9 @@ class Ui_Ftp2Serial(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Ftp2Serial.sizePolicy().hasHeightForWidth())
         Ftp2Serial.setSizePolicy(sizePolicy)
+        icon = QIcon()
+        icon.addFile(u":/appIcon/icons/vga-cable.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        Ftp2Serial.setWindowIcon(icon)
         self.horizontalLayout = QHBoxLayout(Ftp2Serial)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.tabWidget = QTabWidget(Ftp2Serial)
