@@ -23,7 +23,7 @@ class Form(QDialog, Ui_Ftp2Serial):
         self.setFixedSize(480, 360)
         self.setWindowFlags(Qt.Window)
         self.settings = QSettings("Rogers", "Ftp2SerialPort")
-        # self.plainTextEdit0.setReadOnly(True)
+        self.plainTextEdit0.setReadOnly(True)
 
         self.buttonReadData.clicked.connect(self.readData)
         self.buttonSendData.clicked.connect(self.sendData)
