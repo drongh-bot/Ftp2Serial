@@ -105,9 +105,9 @@ class Form(QDialog, Ui_Ftp2Serial):
         text3 = self.settings.value(
             'lineEditFtp3/text', defaultValue='', type=str)
         index0 = self.settings.value(
-            'comboBoxSerial0/currentIndex', defaultValue='', type=int)
+            'comboBoxSerial0/currentIndex', defaultValue=0, type=int)
         index1 = self.settings.value(
-            'comboBoxSerial1/currentIndex', defaultValue='', type=int)
+            'comboBoxSerial1/currentIndex', defaultValue=0, type=int)
         self.lineEditFtp0.setText(text0)
         self.lineEditFtp1.setText(text1)
         self.lineEditFtp2.setText(text2)
