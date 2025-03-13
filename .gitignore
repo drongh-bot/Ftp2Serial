@@ -1,0 +1,12 @@
+Test.ipynb
+__pycache__/
+env/
+painterControl.build/
+painterControl.dist/
+build/
+readme.txt
+output_*.csv
+dist/
+build/
+Ftp2Serial.code-workspace
+settings.json
