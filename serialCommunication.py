@@ -55,8 +55,9 @@ class SerialCommunication:
         if response == b'':
             raise SerialCommunicationError('应该返回 06H，结果无响应，发送不成功。')
         elif response != b'\x06':
+            response_bytes = bytes(response)
             raise SerialCommunicationError(
-                f'应该返回 06H，结果是 {response.hex().upper()}，发送不成功。')
+                f'应该返回 06H，结果是 {response_bytes.hex().upper()}，发送不成功。')
 
     def close_serial_port(self) -> None:
         if self.serial.isOpen():
